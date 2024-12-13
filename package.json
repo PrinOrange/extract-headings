@@ -1,0 +1,64 @@
+{
+  "name": "extract-headings",
+  "version": "0.0.0",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "napi": {
+    "name": "extract-headings",
+    "triples": {
+      "additional": [
+        "aarch64-apple-darwin",
+        "aarch64-linux-android",
+        "aarch64-unknown-linux-gnu",
+        "aarch64-unknown-linux-musl",
+        "aarch64-pc-windows-msvc",
+        "armv7-unknown-linux-gnueabihf",
+        "armv7-unknown-linux-musleabihf",
+        "x86_64-unknown-linux-musl",
+        "x86_64-unknown-freebsd",
+        "i686-pc-windows-msvc",
+        "armv7-linux-androideabi",
+        "universal-apple-darwin",
+        "riscv64gc-unknown-linux-gnu"
+      ]
+    }
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/preset-typescript": "^7.26.0",
+    "@napi-rs/cli": "^2.18.4",
+    "@types/jest": "^29.5.14",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.5"
+  },
+  "engines": {
+    "node": ">= 10"
+  },
+  "scripts": {
+    "artifacts": "napi artifacts",
+    "build": "napi build --platform --release",
+    "build:debug": "napi build --platform",
+    "prepublishOnly": "napi prepublish -t npm",
+    "test": "jest",
+    "universal": "napi universal",
+    "version": "napi version"
+  },
+  "optionalDependencies": {
+    "extract-headings-win32-x64-msvc": "0.0.0",
+    "extract-headings-darwin-x64": "0.0.0",
+    "extract-headings-linux-x64-gnu": "0.0.0",
+    "extract-headings-darwin-arm64": "0.0.0",
+    "extract-headings-android-arm64": "0.0.0",
+    "extract-headings-linux-arm64-gnu": "0.0.0",
+    "extract-headings-linux-arm64-musl": "0.0.0",
+    "extract-headings-win32-arm64-msvc": "0.0.0",
+    "extract-headings-linux-arm-gnueabihf": "0.0.0",
+    "extract-headings-linux-arm-musleabihf": "0.0.0",
+    "extract-headings-linux-x64-musl": "0.0.0",
+    "extract-headings-freebsd-x64": "0.0.0",
+    "extract-headings-win32-ia32-msvc": "0.0.0",
+    "extract-headings-android-arm-eabi": "0.0.0",
+    "extract-headings-darwin-universal": "0.0.0",
+    "extract-headings-linux-riscv64-gnu": "0.0.0"
+  }
+}

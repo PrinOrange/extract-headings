@@ -1,0 +1,15 @@
+{
+  "name": "extract-headings-darwin-universal",
+  "version": "0.0.0",
+  "os": [
+    "darwin"
+  ],
+  "main": "extract-headings.darwin-universal.node",
+  "files": [
+    "extract-headings.darwin-universal.node"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">= 10"
+  }
+}
