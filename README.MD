@@ -13,7 +13,7 @@ npm install extract-headings
 Here's how to use the extractHeadingsFromHtml function:
 
 ```javascript
-import { extractHeadingsFromHtml, HtmlHeading } from "html-headings-extractor";
+import { extractHeadingsFromHtml, HtmlHeading } from "extract-headings";
 
 const html = `
 <html>
