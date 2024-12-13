@@ -60,5 +60,24 @@
     "extract-headings-android-arm-eabi": "0.0.0",
     "extract-headings-darwin-universal": "0.0.0",
     "extract-headings-linux-riscv64-gnu": "0.0.0"
+  },
+  "homepage": "https://github.com/PrinOrange/extract-headings",
+  "bugs": "https://github.com/PrinOrange/extract-headings/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PrinOrange/extract-headings"
+  },
+  "keywords": [
+    "html",
+    "headings",
+    "dom",
+    "html-parser",
+    "dom-parser",
+    "markdown"
+  ],
+  "author": {
+    "name": "但为君故",
+    "email": "codemetic@outlook.com",
+    "url": "https://dreams.plus"
   }
 }
