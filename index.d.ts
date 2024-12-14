@@ -8,4 +8,4 @@ export declare class HtmlHeading {
 }
 export type HTMLHeading = HtmlHeading
 
-export declare export declare function extractHeadingsFromHtml(html: string): Array<HtmlHeading>
+export declare function extractHeadingsFromHtml(html: string): Array<HtmlHeading>
