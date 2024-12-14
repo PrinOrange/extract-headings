@@ -1,6 +1,6 @@
 {
   "name": "extract-headings-linux-x64-gnu",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "os": [
     "linux"
   ],
@@ -11,10 +11,34 @@
   "files": [
     "extract-headings.linux-x64-gnu.node"
   ],
+  "description": "Template project for writing node package with napi-rs",
+  "keywords": [
+    "html",
+    "headings",
+    "dom",
+    "html-parser",
+    "dom-parser",
+    "markdown"
+  ],
+  "author": {
+    "name": "但为君故",
+    "email": "codemetic@outlook.com",
+    "url": "https://dreams.plus"
+  },
+  "homepage": "https://github.com/PrinOrange/extract-headings",
   "license": "MIT",
   "engines": {
     "node": ">= 10"
   },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PrinOrange/extract-headings"
+  },
+  "bugs": "https://github.com/PrinOrange/extract-headings/issues",
   "libc": [
     "glibc"
   ]

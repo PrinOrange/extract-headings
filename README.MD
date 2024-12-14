@@ -1,108 +1,85 @@
-# EXTRACT HEADINGS
+# `@napi-rs/package-template`
 
-A JavaScript library for extracting headings (H1-H6) from HTML strings, providing the level, text content, and ID of each heading.
+![https://github.com/napi-rs/package-template/actions](https://github.com/napi-rs/package-template/workflows/CI/badge.svg)
 
-## Installation
+> Template project for writing node packages with napi-rs.
 
-```bash
-npm install extract-headings
+# Usage
+
+1. Click **Use this template**.
+2. **Clone** your project.
+3. Run `pnpm install` to install dependencies.
+4. Run `npx napi rename -n [name]` command under the project folder to rename your package.
+
+## Install this test package
+
+```
+pnpm add @napi-rs/package-template
 ```
 
 ## Usage
 
-Here's how to use the extractHeadingsFromHtml function:
+### Build
 
-```javascript
-import { extractHeadingsFromHtml, HtmlHeading } from "extract-headings";
+After `pnpm build` command, you can see `package-template.[darwin|win32|linux].node` file in project root. This is the native addon built from [lib.rs](./src/lib.rs).
 
-const html = `
-<html>
-    <body>
-        <h1 id="main-title">Welcome to My Site</h1>
-        <h2>About Us</h2>
-        <h3 id="services">Our Services</h3>
-        <h4>Contact</h4>
-    </body>
-</html>
-`;
+### Test
 
-const headings = extractHeadingsFromHtml(html);
+With [ava](https://github.com/avajs/ava), run `pnpm test` to testing native addon. You can also switch to another testing framework if you want.
 
-console.log(headings);
-// Output would be:
-// [
-//   HtmlHeading { level: 1, text: 'Welcome to My Site', id: 'main-title' },
-//   HtmlHeading { level: 2, text: 'About Us', id: undefined },
-//   HtmlHeading { level: 3, text: 'Our Services', id: 'services' },
-//   HtmlHeading { level: 4, text: 'Contact', id: undefined }
-// ]
+### CI
+
+With GitHub Actions, each commit and pull request will be built and tested automatically in [`node@18`, `node@20`] x [`macOS`, `Linux`, `Windows`] matrix. You will never be afraid of the native addon broken in these platforms.
+
+### Release
+
+Release native package is very difficult in old days. Native packages may ask developers who use it to install `build toolchain` like `gcc/llvm`, `node-gyp` or something more.
+
+With `GitHub actions`, we can easily prebuild a `binary` for major platforms. And with `N-API`, we should never be afraid of **ABI Compatible**.
+
+The other problem is how to deliver prebuild `binary` to users. Downloading it in `postinstall` script is a common way that most packages do it right now. The problem with this solution is it introduced many other packages to download binary that has not been used by `runtime codes`. The other problem is some users may not easily download the binary from `GitHub/CDN` if they are behind a private network (But in most cases, they have a private NPM mirror).
+
+In this package, we choose a better way to solve this problem. We release different `npm packages` for different platforms. And add it to `optionalDependencies` before releasing the `Major` package to npm.
+
+`NPM` will choose which native package should download from `registry` automatically. You can see [npm](./npm) dir for details. And you can also run `pnpm add @napi-rs/package-template` to see how it works.
+
+## Develop requirements
+
+- Install the latest `Rust`
+- Install `Node.js@16+` which fully supported `Node-API`
+- Run `corepack enable`
+
+## Test in local
+
+- pnpm
+- pnpm build
+- pnpm test
+
+And you will see:
+
+```bash
+$ ava --verbose
+
+  ✔ sync function from native code
+  ✔ sleep function from native code (201ms)
+  ─
+
+  2 tests passed
+✨  Done in 1.12s.
 ```
 
-## API
+## Release package
 
-### Function: `extractHeadingsFromHtml(html: string): Array<HtmlHeading>`
+Ensure you have set your **NPM_TOKEN** in the `GitHub` project setting.
 
-Extracts all heading tags (`h1` to `h6`) from the given HTML string.
+In `Settings -> Secrets`, add **NPM_TOKEN** into it.
 
-**Parameters**:
+When you want to release the package:
 
-- `html` - A string containing HTML markup.
+```
+npm version [<newversion> | major | minor | patch | premajor | preminor | prepatch | prerelease [--preid=<prerelease-id>] | from-git]
 
-**Returns**: An array of `HtmlHeading` objects.
-
-#### `HtmlHeading` Class:
-
-**Properties**:
-
-- `level: number` - The heading level (1-6).
-- `text?: string` - The text content of the heading. Can be `undefined` if no text is present.
-- `id?: string` - The ID attribute of the heading. Can be `undefined` if no ID is specified.
-
-**Constructor**: `new HtmlHeading(level: number, text?: string, id?: string)`
-
-## Features
-
-- **Efficient parsing**: Utilizes an optimized HTML parser to quickly extract heading information.
-- **Flexible**: Handles various HTML structures, including malformed HTML, nested headings, and headings without text or ID attributes.
-- **TypeScript Support**: Provides type declarations for better development experience with TypeScript.
-
-## Examples
-
-### Extracting Headings from a Blog Post
-
-```javascript
-const blogPostHTML = `
-<article>
-    <h1>Latest Tech News</h1>
-    <h2>New AI Developments</h2>
-    <h3 id="section-1">Machine Learning Breakthroughs</h3>
-    <h4>Applications in Medicine</h4>
-</article>
-`;
-
-const headings = extractHeadingsFromHtml(blogPostHTML);
-console.log(headings);
+git push
 ```
 
-### Handling Headings Without IDs or Text
-
-```javascript
-const htmlWithoutIdOrText = `
-<div>
-    <h1></h1>
-    <h2>No ID Here</h2>
-</div>
-`;
-
-const headings = extractHeadingsFromHtml(htmlWithoutIdOrText);
-console.log(headings);
-// Should output:
-// [
-//   HtmlHeading { level: 1, text: '', id: undefined },
-//   HtmlHeading { level: 2, text: 'No ID Here', id: undefined }
-// ]
-```
-
-## LICENSE
-
-MIT©[但为君故](https://dreams.plus)
+GitHub actions will do the rest job for you.
