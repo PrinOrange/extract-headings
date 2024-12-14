@@ -1,7 +1,7 @@
 {
   "name": "extract-headings",
   "version": "0.0.2",
-  "description": "Template project for writing node package with napi-rs",
+  "description": "A JavaScript library of Rust-binding for extracting headings (H1-H6) from HTML strings with high-profermance, providing the level, text content, and ID of each heading.",
   "main": "index.js",
   "types": "index.d.ts",
   "browser": "browser.js",
